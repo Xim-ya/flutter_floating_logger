@@ -114,22 +114,6 @@ class LoggerLogsData {
     final param = _getParam(data);
     final message = getMessage(data);
 
-    // Construct the log message
-    final logMessage = "${color}Method  :${AnsiColor.reset} $method\n"
-        "${color}Url     :${AnsiColor.reset} $url\n"
-        "${color}Status  :${AnsiColor.reset} $statusCode \n"
-        "${color}Message :${AnsiColor.reset} ${message.isEmpty ? '-' : message}\n"
-        "${color}Param   :\n${AnsiColor.reset}${FormatLogger.parseJson(param)}\n"
-        "${color}Data    :\n${AnsiColor.reset}${FormatLogger.parseJson(dataText)}\n"
-        "${color}Headers :\n${AnsiColor.reset}${FormatLogger.parseJson(headers)}\n"
-        "${color}Curl    :${AnsiColor.reset} $curlCommand";
-
-    // Log the message using Dart's `log` function
-    log(
-      logMessage,
-      name: name,
-    );
-
     // Save the request or response message on state before show in ui
     logRepository.addLog(
       LogRepositoryModel(

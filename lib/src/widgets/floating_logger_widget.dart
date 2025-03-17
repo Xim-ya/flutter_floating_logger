@@ -17,7 +17,7 @@ class FloatingLoggerControl extends StatefulWidget {
   /// The main child widget (usually the app content).
   final Widget child;
 
-  /// Controls whether the floating button is shown or hidden.
+  /// Controls whether the floating button is shown or hid Gden.
   final ValueNotifier<bool>? isShow;
 
   /// Determines if the visibility preference should be retrieved.
