@@ -43,14 +43,6 @@ class LoggerNetworkSettings {
     RequestInterceptorHandler handler,
     LogRepository logRepository,
   ) {
-    final curlCommand = FormatLogger.generateCurlCommand(options);
-    LoggerLogsData.logMessage<RequestOptions>(
-      options,
-      AnsiColor.magenta,
-      logRepository,
-      curlCommand,
-      name: "REQ",
-    );
     handler.next(options);
   }
 
@@ -64,15 +56,6 @@ class LoggerNetworkSettings {
     ResponseInterceptorHandler handler,
     LogRepository logRepository,
   ) {
-    final curlCommand =
-        FormatLogger.generateCurlCommand(response.requestOptions);
-    LoggerLogsData.logMessage<Response<dynamic>>(
-      response,
-      AnsiColor.green,
-      logRepository,
-      curlCommand,
-      name: "RES",
-    );
     handler.next(response);
   }
 
@@ -86,14 +69,6 @@ class LoggerNetworkSettings {
     ErrorInterceptorHandler handler,
     LogRepository logRepository,
   ) {
-    final curlCommand = FormatLogger.generateCurlCommand(error.requestOptions);
-    LoggerLogsData.logMessage<DioException>(
-      error,
-      AnsiColor.red,
-      logRepository,
-      curlCommand,
-      name: "ERR",
-    );
     handler.reject(error);
   }
 

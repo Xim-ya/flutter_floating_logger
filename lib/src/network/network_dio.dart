@@ -26,39 +26,8 @@ class DioLogger with DioMixin implements Dio {
   /// - Adds custom interceptors for logging requests, responses, and errors.
   /// - Uses [IOHttpClientAdapter] for HTTP request handling.
   DioLogger._(this.logRepository) {
-    // Set default request options for all HTTP requests.
-    options = BaseOptions(
-      contentType:
-          'application/json; charset=utf-8', // Define content type as JSON with UTF-8 encoding.
-      connectTimeout: const Duration(
-          milliseconds: 50000), // Set connection timeout to 50 seconds.
-      receiveTimeout: const Duration(
-          milliseconds: 30000), // Set response receiving timeout to 30 seconds.
-    );
-
-    // Conditional HTTP client adapter based on platform
-    if (foundation.kIsWeb) {
-      // Web-specific adapter (ensure this is used for Web)
-      httpClientAdapter = HttpClientAdapter();
-    } else {
-      // For non-web platforms like mobile, use IOHttpClientAdapter
-      httpClientAdapter = IOHttpClientAdapter();
-    }
-
     // Add default interceptors
     addDefaultInterceptors();
-
-    // Add Dio's built-in logging interceptor (disabled to avoid duplicate logs).
-    interceptors.add(
-      LogInterceptor(
-        error: false, // Disable error logging.
-        request: false, // Disable request logging.
-        requestHeader: false, // Disable request header logging.
-        responseHeader: false, // Disable response header logging.
-        responseBody: false, // Disable response body logging.
-        requestBody: false, // Disable request body logging.
-      ),
-    );
   }
 
   /// A private log repository instance to manage logs globally.
